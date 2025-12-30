@@ -3,6 +3,10 @@
 Laravel Elastic Email is a wrapper for Elastic Email.
 You can send e-mails in your project just like you usually do with Laravel's native mailers, the package makes sure the e-mails are send via the Elastic Email API using your Elastic Email account.
 
+### Note
+
+this fork only supports Elastic Email v4 API, test with Laravel 12
+
 # Upgrade Guide from V2 to V4
 
 ## Requires
