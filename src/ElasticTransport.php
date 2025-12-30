@@ -34,16 +34,16 @@ class ElasticTransport extends AbstractTransport
     {
         $email = MessageConverter::toEmail($message->getOriginalMessage());
 
-        $recipients = [
-            'To' => $this->getEmailAddresses($email, 'getTo'),
-            'CC' => $this->getEmailAddresses($email, 'getCc'),
-            'BCC' => $this->getEmailAddresses($email, 'getBcc'),
-        ];
-
-        // Filter out empty arrays
-        $recipients = array_filter($recipients, function($a) {
-            return !empty($a);
-        });
+        $recipients = [];
+        foreach ($this->getEmailAddresses($email, 'getTo') as $addr) {
+            $recipients[] = ['Email' => $addr];
+        }
+        foreach ($this->getEmailAddresses($email, 'getCc') as $addr) {
+            $recipients[] = ['Email' => $addr];
+        }
+        foreach ($this->getEmailAddresses($email, 'getBcc') as $addr) {
+            $recipients[] = ['Email' => $addr];
+        }
 
         $content = [
             'Body' => [],
